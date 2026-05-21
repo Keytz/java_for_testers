@@ -42,6 +42,11 @@ public class ContactHelper extends HelperBase {
         return manager.isElementPresent(By.name("selected[]"));
     }
 
+    public int getCount() {
+        openHome();
+        return manager.driver.findElements(By.name("selected[]")).size();
+    }
+
 
     private void fillContactForm(ContactData contact) {
         type(By.name("firstname"), contact.firstname());
