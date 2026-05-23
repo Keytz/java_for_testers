@@ -20,7 +20,7 @@ public class CreationContactTests extends TestBase {
             for (var email : List.of("", "e-mail")) {
 
               result.add(new ContactData(
-                      firstname,
+                      "", firstname,
                       middleName,
                       lastname,
                       telephone,
@@ -34,7 +34,7 @@ public class CreationContactTests extends TestBase {
 
     for (int i = 0; i < 5; i++) {
       result.add(new ContactData(
-              randomString(i * 10),
+              "", randomString(i * 10),
               randomString(i * 10),
               randomString(i * 10),
               randomString(i * 10),

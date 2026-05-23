@@ -6,6 +6,8 @@ public record GroupDate(String id, String name, String header, String footer) {
         this ("", "", "", "");
     }
 
+
+
     public GroupDate withId(String id) {
         return new GroupDate(id, this.name, this.header, this.footer);}
 
