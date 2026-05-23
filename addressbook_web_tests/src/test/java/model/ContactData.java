@@ -30,7 +30,8 @@ public record ContactData(String id, String firstname, String middleName, String
 
     public ContactData withMiddleName(String middleName) {
         return new ContactData(
-                "", this.firstname,
+                this.id,
+                this.firstname,
                 middleName,
                 this.lastname,
                 this.telephone,
@@ -46,6 +47,26 @@ public record ContactData(String id, String firstname, String middleName, String
                 lastname,
                 this.telephone,
                 this.email
+        );
+    }
+    public ContactData withTelephone(String telephone) {
+        return new ContactData(
+                this.id,
+                this.firstname,
+                this.middleName,
+                this.lastname,
+                telephone,
+                this.email
+        );
+    }
+    public ContactData withEmail(String email) {
+        return new ContactData(
+                this.id,
+                this.firstname,
+                this.middleName,
+                this.lastname,
+                this.telephone,
+                email
         );
     }
 }

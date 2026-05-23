@@ -39,4 +39,23 @@ public class RemovalContactTest extends TestBase{
 
     Assertions.assertEquals(newContacts, expectedList);
   }
+
+  @Test
+  void canRemoveAllContactsAtOnce() {
+
+    if (app.contact().getCount() == 0) {
+      app.contact().createContact(new ContactData(
+              "",
+              "first name",
+              "middle_name",
+              "last_name",
+              "telephone",
+              "e-mail"
+      ));
+    }
+
+    app.contact().removeAllContacts();
+
+    Assertions.assertEquals(0, app.contact().getCount());
+  }
 }

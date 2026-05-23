@@ -65,6 +65,19 @@ public class ContactHelper extends HelperBase {
         click(By.name("delete"));
 
     }
+
+    public void removeAllContacts() {
+        openHome();
+        selectAllContacts();
+        removeSelectedContact();
+    }
+    private void selectAllContacts() {
+        var checkboxes = manager.driver.findElements(By.name("selected[]"));
+
+        for (var checkbox : checkboxes) {
+            checkbox.click();
+        }
+    }
     private void selectContact(ContactData contact) {
 
         new WebDriverWait(manager.driver(), Duration.ofSeconds(5))
