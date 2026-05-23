@@ -101,6 +101,26 @@ public class ContactHelper extends HelperBase {
     private void returnToHomePage() {
         click(By.linkText("home page"));
     }
+    public void modifyContact(
+            ContactData contact,
+            ContactData modifiedContact
+    ) {
+        openHome();
+        selectContact(contact);
+        initContactModification(contact);
+        fillContactForm(modifiedContact);
+        submitContactModification();
+        returnToHomePage();
+    }
+    private void initContactModification(ContactData contact) {
+        click(By.xpath(String.format(
+                "//a[@href='edit.php?id=%s']",
+                contact.id()
+        )));
+    }
+    private void submitContactModification() {
+        click(By.name("update"));
+    }
 
     public List<ContactData> getList() {
 
