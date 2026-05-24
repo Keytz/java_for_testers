@@ -1,9 +1,9 @@
 package model;
 
-public record ContactData(String id, String firstname, String middleName, String lastname, String telephone, String email) {
+public record ContactData(String id, String firstname, String middleName, String lastname, String telephone, String email, String photo) {
 
     public ContactData() {
-        this("", "", "", "", "", "");
+        this("", "", "", "", "", "", "");
     }
 
     public ContactData withId(String id) {
@@ -13,7 +13,8 @@ public record ContactData(String id, String firstname, String middleName, String
                 this.middleName,
                 this.lastname,
                 this.telephone,
-                this.email
+                this.email,
+                this.photo
         );
     }
 
@@ -24,7 +25,8 @@ public record ContactData(String id, String firstname, String middleName, String
                 this.middleName,
                 this.lastname,
                 this.telephone,
-                this.email
+                this.email,
+                this.photo
         );
     }
 
@@ -35,7 +37,8 @@ public record ContactData(String id, String firstname, String middleName, String
                 middleName,
                 this.lastname,
                 this.telephone,
-                this.email
+                this.email,
+                this.photo
         );
     }
 
@@ -46,7 +49,8 @@ public record ContactData(String id, String firstname, String middleName, String
                 this.middleName,
                 lastname,
                 this.telephone,
-                this.email
+                this.email,
+                this.photo
         );
     }
     public ContactData withTelephone(String telephone) {
@@ -56,7 +60,8 @@ public record ContactData(String id, String firstname, String middleName, String
                 this.middleName,
                 this.lastname,
                 telephone,
-                this.email
+                this.email,
+                this.photo
         );
     }
     public ContactData withEmail(String email) {
@@ -66,7 +71,19 @@ public record ContactData(String id, String firstname, String middleName, String
                 this.middleName,
                 this.lastname,
                 this.telephone,
-                email
+                email,
+                this.photo
+        );
+    }
+    public ContactData withPhoto(String photo) {
+        return new ContactData(
+                this.id,
+                this.firstname,
+                this.middleName,
+                this.lastname,
+                this.telephone,
+                this.email,
+                photo
         );
     }
 }

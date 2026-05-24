@@ -19,7 +19,8 @@ public class RemovalContactTest extends TestBase{
               "middle_name",
               "last_name",
               "telephone",
-              "e-mail"
+              "e-mail",
+              "photo"
       ));
     }
 
@@ -50,7 +51,8 @@ public class RemovalContactTest extends TestBase{
               "middle_name",
               "last_name",
               "telephone",
-              "e-mail"
+              "e-mail",
+              "src/test/resources/photo.png"
       ));
     }
 

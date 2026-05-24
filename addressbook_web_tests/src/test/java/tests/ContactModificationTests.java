@@ -20,7 +20,8 @@ public class ContactModificationTests extends TestBase {
                     "middle_name",
                     "last_name",
                     "telephone",
-                    "e-mail"
+                    "e-mail",
+                    "photo"
             ));
         }
 
