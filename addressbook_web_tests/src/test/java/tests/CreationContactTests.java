@@ -27,7 +27,7 @@ public class CreationContactTests extends TestBase {
                       lastname,
                       telephone,
                       email,
-                      "src/test/resources/photo.png"
+                      randomFile("src/test/resources/images")
               ));
             }
           }
@@ -42,7 +42,7 @@ public class CreationContactTests extends TestBase {
               randomString(i ),
               randomString(i ),
               randomString(i ),
-              "src/test/resources/photo.png"
+              "src/test/resources/images/photo.png"
       ));
     }
 

@@ -3,6 +3,7 @@ package tests;
 import manager.ApplicationManager;
 import org.junit.jupiter.api.BeforeEach;
 
+import java.io.File;
 import java.util.Random;
 
 public class TestBase {
@@ -24,5 +25,17 @@ public static String randomString(int n){
 
         return result;
         }
+
+    public static String randomFile(String dir) {
+
+        var files = new File(dir).listFiles(file ->
+                file.isFile()
+                        && file.getName().endsWith(".png")
+        );
+
+        var rnd = new Random();
+
+        return files[rnd.nextInt(files.length)].getPath();
+    }
 }
 
