@@ -1,6 +1,8 @@
 package common;
 
 import java.util.Random;
+import java.io.File;
+
 
 public class CommonFunctions {
     public static String randomString(int n){
@@ -12,4 +14,15 @@ public class CommonFunctions {
 
             return result;
             }
-}
+
+public static String randomFile(String dir) {
+
+    var files = new File(dir).listFiles(file ->
+            file.isFile()
+                    && file.getName().endsWith(".png")
+    );
+
+    var rnd = new Random();
+
+    return files[rnd.nextInt(files.length)].getPath();
+}}
