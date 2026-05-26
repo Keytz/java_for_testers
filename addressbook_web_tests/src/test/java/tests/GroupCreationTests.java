@@ -1,11 +1,14 @@
 package tests;
 
-import common.CommonFunctions;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import model.GroupDate;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
@@ -13,28 +16,24 @@ import java.util.List;
 public class GroupCreationTests extends TestBase {
 
 
-    public static List<GroupDate> groupProvider() {
+    public static List<GroupDate> groupProvider() throws IOException {
         var result = new ArrayList<GroupDate>();
-        for (var name : List.of("", "group name")){
-            for (var header : List.of("", "group header")){
-                for (var footer : List.of("", "group footer")) {
-                    result.add(new GroupDate()
-                            .withName(name)
-                            .withHeader(header)
-                            .withFooter(footer));
-                }
-            }
-        }
-        for (int i = 0; i < 5; i++){
-            result.add(new GroupDate()
-                    .withName(CommonFunctions.randomString(i * 10))
-                    .withHeader(CommonFunctions.randomString(i*10))
-                    .withFooter(CommonFunctions.randomString(i*10)));
-        }
+        //   for (var name : List.of("", "group name")){
+        //      for (var header : List.of("", "group header")){
+        //          for (var footer : List.of("", "group footer")) {
+        //              result.add(new GroupDate()
+        //                       .withName(name)
+        //                        .withHeader(header)
+        //                        .withFooter(footer));
+        //            }
+        //       }
+        //    }
+        ObjectMapper mapper = new ObjectMapper();
+        var value = mapper.readValue(new File("groups.json"), new TypeReference<List<GroupDate>>() {
+        });
+        result.addAll(value);
         return result;
     }
-
-
 
 
     @ParameterizedTest
@@ -55,7 +54,7 @@ public class GroupCreationTests extends TestBase {
 
     public static List<GroupDate> negativeGroupProvider() {
         var result = new ArrayList<GroupDate>(List.of(
-                new GroupDate("", "group name'", "","")));
+                new GroupDate("", "group name'", "", "")));
         return result;
     }
 
@@ -65,7 +64,7 @@ public class GroupCreationTests extends TestBase {
         var oldGroups = app.groups().getList();
         app.groups().createGroup(group);
         var newGroups = app.groups().getList();
-        Assertions.assertEquals(newGroups , oldGroups);
+        Assertions.assertEquals(newGroups, oldGroups);
 
     }
 }
