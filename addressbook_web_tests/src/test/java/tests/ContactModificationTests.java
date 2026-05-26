@@ -21,7 +21,7 @@ public class ContactModificationTests extends TestBase {
                     "last_name",
                     "telephone",
                     "e-mail",
-                    "photo"
+                    randomFile("src/test/resources/images")
             ));
         }
 
