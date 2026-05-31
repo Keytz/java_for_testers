@@ -11,15 +11,15 @@ import java.util.Random;
 public class GroupModificationTests extends TestBase {
     @Test
     void canModifyGroup(){
-        if (app.groups().getCount() == 0) {
-            app.groups().createGroup(new GroupDate("", "name", "header", "footer"));
+        if (app.hbm().getGroupCount() == 0) {
+            app.hbm().createGroup(new GroupDate("", "name", "header", "footer"));
         }
-        var oldGroups = app.groups().getList();
+        var oldGroups = app.hbm().getGroupList();
         var rnd = new Random();
         var index = rnd.nextInt(oldGroups.size());
         var testDate = new GroupDate().withName("modified name");
         app.groups().modifyGroup(oldGroups.get(index), testDate);
-        var newGroups = app.groups().getList();
+        var newGroups = app.hbm().getGroupList();
         var expectedList = new ArrayList<>(oldGroups);
         expectedList.set(index, testDate.withId(oldGroups.get(index).id()));
         Comparator<GroupDate> compareById = (o1, o2) -> {
