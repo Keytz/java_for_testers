@@ -18,7 +18,7 @@ public record ContactData(String id, String firstname, String middleName, String
         );
     }
 
-    public ContactData withFirstname(String firstname) {
+    public ContactData withFirstName(String firstname) {
         return new ContactData(
                 this.id,
                 firstname,
@@ -42,7 +42,7 @@ public record ContactData(String id, String firstname, String middleName, String
         );
     }
 
-    public ContactData withLastname(String lastname) {
+    public ContactData withLastName(String lastname) {
         return new ContactData(
                 this.id,
                 this.firstname,

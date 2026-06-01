@@ -1,12 +1,12 @@
 package manager;
 
+import manager.hbm.ContactRecord;
 import manager.hbm.GroupRecord;
+import model.ContactData;
 import model.GroupDate;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.AvailableSettings;
-import org.jspecify.annotations.NonNull;
 import org.hibernate.cfg.Configuration;
-
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,7 +19,8 @@ public class HibernateHelper extends HelperBase {
         sessionFactory = new Configuration()
 //                        .addAnotatedClass(Book.class)
                 .addAnnotatedClass(GroupRecord.class)
-                .setProperty(AvailableSettings.URL, "jdbc:mysql://localhost/addressbook")
+                .addAnnotatedClass(ContactRecord.class)
+                .setProperty(AvailableSettings.URL, "jdbc:mysql://localhost/addressbook?zeroDateTimeBehavior=convertToNull")
                 .setProperty(AvailableSettings.USER, "root")
                 .setProperty(AvailableSettings.PASS, "")
                 .buildSessionFactory();
@@ -62,6 +63,47 @@ public class HibernateHelper extends HelperBase {
             session.getTransaction().begin();
             session.persist(convert(groupDate));
             session.getTransaction().commit();
+        });
+    }
+    public List<ContactData> getContactList() {
+        return convertContactList(
+                sessionFactory.fromSession(session ->
+                        session.createQuery("from ContactRecord", ContactRecord.class)
+                                .list()
+                )
+        );
+    }
+
+
+    public long getContactCount() {
+        return sessionFactory.fromSession(session ->
+                session.createQuery(
+                        "select count(*) from ContactRecord",
+                        Long.class
+                ).getSingleResult()
+        );
+    }
+
+    private static ContactData convert(ContactRecord record) {
+        return new ContactData()
+                .withId(String.valueOf(record.id))
+                .withFirstName(record.firstname)
+                .withMiddleName(record.middleName)
+                .withLastName(record.lastname);
+    }
+    private static List<ContactData> convertContactList(List<ContactRecord> records) {
+        List<ContactData> result = new ArrayList<>();
+
+        for (var record : records) {
+            result.add(convert(record));
+        }
+
+        return result;
+    }
+
+    public List<ContactData> getContactsInGroup(GroupDate group) {
+        return sessionFactory.fromSession(session -> {
+            return convertContactList(session.get(GroupRecord.class, group.id()).contacts);
         });
     }
 }

@@ -13,7 +13,7 @@ public class ContactModificationTests extends TestBase {
     @Test
     void canModifyContact() {
 
-        if (app.contact().getCount() == 0) {
+        if (app.hbm().getContactCount() == 0) {
             app.contact().createContact(new ContactData(
                     "",
                     "first name",
@@ -25,22 +25,22 @@ public class ContactModificationTests extends TestBase {
             ));
         }
 
-        var oldContacts = app.contact().getList();
+        var oldContacts = app.hbm().getContactList();
 
         var rnd = new Random();
 
         var index = rnd.nextInt(oldContacts.size());
 
         var testData = new ContactData()
-                .withFirstname("modified firstname")
-                .withLastname("modified lastname");
+                .withFirstName("modified firstname")
+                .withLastName("modified lastname");
 
         app.contact().modifyContact(
                 oldContacts.get(index),
                 testData
         );
 
-        var newContacts = app.contact().getList();
+        var newContacts = app.hbm().getContactList();
 
         var expectedList = new ArrayList<>(oldContacts);
 

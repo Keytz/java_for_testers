@@ -90,9 +90,9 @@ public class Generator {
 
         for (int i = 0; i < count; i++) {
             result.add(new ContactData()
-                    .withFirstname(CommonFunctions.randomString(i * 10))
+                    .withFirstName(CommonFunctions.randomString(i * 10))
                     .withMiddleName(CommonFunctions.randomString(i * 10))
-                    .withLastname(CommonFunctions.randomString(i * 10))
+                    .withLastName(CommonFunctions.randomString(i * 10))
                     .withTelephone(CommonFunctions.randomString(i * 10))
                     .withEmail(CommonFunctions.randomString(i * 10))
                     .withPhoto(CommonFunctions.randomFile("src/test/resources/images")));

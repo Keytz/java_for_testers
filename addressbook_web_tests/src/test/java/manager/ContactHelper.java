@@ -1,8 +1,10 @@
 package manager;
 
 import model.ContactData;
+import model.GroupDate;
 import org.openqa.selenium.By;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
@@ -22,6 +24,18 @@ public class ContactHelper extends HelperBase {
         fillContactForm(contact);
         submitContactCreation();
         returnToHomePage();
+    }
+
+    public void createContact(ContactData contact, GroupDate group) {
+        openAddNewPage();
+        fillContactForm(contact);
+        selectGroup(group);
+        submitContactCreation();
+        returnToHomePage();
+    }
+
+    private void selectGroup(GroupDate group) {
+       new Select(manager.driver.findElement(By.name("new_group"))).selectByValue(group.id());
     }
 
     public void removeContact(ContactData contact) {
@@ -148,8 +162,8 @@ public class ContactHelper extends HelperBase {
 
             contacts.add(new ContactData()
                     .withId(id)
-                    .withFirstname(firstname)
-                    .withLastname(lastname));
+                    .withFirstName(firstname)
+                    .withLastName(lastname));
         }
 
         return contacts;
