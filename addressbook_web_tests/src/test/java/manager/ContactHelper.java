@@ -168,4 +168,41 @@ public class ContactHelper extends HelperBase {
 
         return contacts;
     }
+
+
+    public void addContactToGroup(ContactData contact,
+                                  GroupDate group) {
+
+        openHome();
+
+        selectContact(contact);
+
+        new Select(
+                manager.driver.findElement(
+                        By.name("to_group"))
+        ).selectByValue(group.id());
+
+        click(By.name("add"));
+
+
+    }
+
+    public void removeContactFromGroup(ContactData contact,
+                                       GroupDate group) {
+
+        openHome();
+
+        new WebDriverWait(manager.driver, Duration.ofSeconds(5))
+                .until(ExpectedConditions.presenceOfElementLocated(
+                        By.name("group")
+                ));
+
+        new Select(
+                manager.driver.findElement(By.name("group"))
+        ).selectByValue(group.id());
+
+        selectContact(contact);
+
+        click(By.name("remove"));
+    }
 }

@@ -3,6 +3,7 @@ package tests;
 import model.ContactData;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import model.GroupDate;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -60,4 +61,6 @@ public class RemovalContactTest extends TestBase{
 
     Assertions.assertEquals(0, app.hbm().getContactCount());
   }
+
+
 }

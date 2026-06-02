@@ -2,6 +2,8 @@ package manager.hbm;
 
 import jakarta.persistence.*;
 
+import java.util.List;
+
 @Entity
 @Table(name = "addressbook")
 public class ContactRecord {
@@ -18,6 +20,9 @@ public class ContactRecord {
 
     @Column(name = "lastname")
     public String lastname;
+
+    @ManyToMany(mappedBy = "contacts")
+    public List<GroupRecord> groups;
 
     public ContactRecord() {
     }
