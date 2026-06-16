@@ -4,15 +4,17 @@ public record ContactData(String id,
                           String firstname,
                           String middleName,
                           String lastname,
-                          String email,
                           String photo,
                           String home,
                           String mobile,
                           String work,
-                          String secondary) {
+                          String email,
+                          String email2,
+                          String email3,
+                          String address) {
 
     public ContactData() {
-        this("", "", "", "", "", "", "", "", "","");
+        this("", "", "", "", "", "", "", "", "","","","");
     }
 
     public ContactData withId(String id) {
@@ -21,12 +23,14 @@ public record ContactData(String id,
                 this.firstname,
                 this.middleName,
                 this.lastname,
-                this.email,
                 this.photo,
                 this.home,
                 this.mobile,
                 this.work,
-                this.secondary);
+                this.email,
+                this.email2,
+                this.email3,
+                this.address);
     }
 
     public ContactData withFirstName(String firstname) {
@@ -35,12 +39,14 @@ public record ContactData(String id,
                 firstname,
                 this.middleName,
                 this.lastname,
-                this.email,
                 this.photo,
                 this.home,
                 this.mobile,
                 this.work,
-                this.secondary);
+                this.email,
+                this.email2,
+                this.email3,
+                this.address);
     }
 
     public ContactData withMiddleName(String middleName) {
@@ -49,12 +55,14 @@ public record ContactData(String id,
                 this.firstname,
                 middleName,
                 this.lastname,
-                this.email,
                 this.photo,
                 this.home,
                 this.mobile,
                 this.work,
-                this.secondary);
+                this.email,
+                this.email2,
+                this.email3,
+                this.address);
     }
 
     public ContactData withLastName(String lastname) {
@@ -63,12 +71,14 @@ public record ContactData(String id,
                 this.firstname,
                 this.middleName,
                 lastname,
-                this.email,
                 this.photo,
                 this.home,
                 this.mobile,
                 this.work,
-                this.secondary);
+                this.email,
+                this.email2,
+                this.email3,
+                this.address);
     }
     public ContactData withTelephone(String telephone) {
         return new ContactData(
@@ -76,38 +86,30 @@ public record ContactData(String id,
                 this.firstname,
                 this.middleName,
                 this.lastname,
+                this.photo,
+                this.home,
+                this.mobile,
+                this.work,
                 this.email,
-                this.photo,
-                this.home,
-                this.mobile,
-                this.work,
-                this.secondary);
+                this.email2,
+                this.email3,
+                this.address);
     }
-    public ContactData withEmail(String email) {
-        return new ContactData(
-                this.id,
-                this.firstname,
-                this.middleName,
-                this.lastname,
-                email,
-                this.photo,
-                this.home,
-                this.mobile,
-                this.work,
-                this.secondary);
-    }
+
     public ContactData withPhoto(String photo) {
         return new ContactData(
                 this.id,
                 this.firstname,
                 this.middleName,
                 this.lastname,
-                this.email,
                 photo,
                 this.home,
                 this.mobile,
                 this.work,
-                this.secondary);
+                this.email,
+                this.email2,
+                this.email3,
+                this.address);
     }
     public ContactData withHome(String home) {
         return new ContactData(
@@ -115,12 +117,14 @@ public record ContactData(String id,
                 this.firstname,
                 this.middleName,
                 this.lastname,
-                this.email,
                 this.photo,
                 home,
                 this.mobile,
                 this.work,
-                this.secondary);
+                this.email,
+                this.email2,
+                this.email3,
+                this.address);
     }
     public ContactData withMobile(String mobile) {
         return new ContactData(
@@ -128,12 +132,14 @@ public record ContactData(String id,
                 this.firstname,
                 this.middleName,
                 this.lastname,
-                this.email,
                 this.photo,
                 this.home,
                 mobile,
                 this.work,
-                this.secondary);
+                this.email,
+                this.email2,
+                this.email3,
+                this.address);
     }
     public ContactData withWork(String work) {
         return new ContactData(
@@ -141,24 +147,75 @@ public record ContactData(String id,
                 this.firstname,
                 this.middleName,
                 this.lastname,
-                this.email,
                 this.photo,
                 this.home,
                 this.mobile,
                 work,
-                this.secondary);
+                this.email,
+                this.email2,
+                this.email3,
+                this.address);
     }
-    public ContactData withSecondary(String secondary) {
+    public ContactData withEmail(String email) {
         return new ContactData(
                 this.id,
                 this.firstname,
                 this.middleName,
                 this.lastname,
-                this.email,
                 this.photo,
                 this.home,
                 this.mobile,
                 this.work,
-                secondary);
+                email,
+                this.email2,
+                this.email3,
+                this.address);
     }
+    public ContactData withEmail2(String email2) {
+        return new ContactData(
+                this.id,
+                this.firstname,
+                this.middleName,
+                this.lastname,
+                this.photo,
+                this.home,
+                this.mobile,
+                this.work,
+                this.email,
+                email2,
+                this.email3,
+                this.address);
+    }
+    public ContactData withEmail3(String email3) {
+        return new ContactData(
+                this.id,
+                this.firstname,
+                this.middleName,
+                this.lastname,
+                this.photo,
+                this.home,
+                this.mobile,
+                this.work,
+                this.email,
+                this.email2,
+                email3,
+                this.address);
+    }
+    public ContactData withAddress(String address) {
+        return new ContactData(
+                this.id,
+                this.firstname,
+                this.middleName,
+                this.lastname,
+                this.photo,
+                this.home,
+                this.mobile,
+                this.work,
+                this.email,
+                this.email2,
+                this.email3,
+                address);
+    }
+
+
 }

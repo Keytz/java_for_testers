@@ -93,6 +93,7 @@ public class Generator {
                     .withLastName(CommonFunctions.randomString(10))
                     .withTelephone(CommonFunctions.randomString(10))
                     .withEmail(CommonFunctions.randomString(10))
+                .withEmail2(CommonFunctions.randomString(10))
                     .withPhoto(CommonFunctions.randomFile("src/test/resources/images")));
 
     }

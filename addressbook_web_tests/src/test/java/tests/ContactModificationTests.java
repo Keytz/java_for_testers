@@ -25,6 +25,8 @@ public class ContactModificationTests extends TestBase {
                     "",
                     "",
                     "",
+                    "",
+                    "",
                     ""));
         }
 

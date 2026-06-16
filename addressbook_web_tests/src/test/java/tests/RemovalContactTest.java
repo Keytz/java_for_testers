@@ -23,6 +23,8 @@ public class RemovalContactTest extends TestBase {
                     "",
                     "",
                     "",
+                    "",
+                    "",
                     ""));
         }
 
@@ -57,7 +59,11 @@ public class RemovalContactTest extends TestBase {
                     ),"",
                     "",
                     "",
+                    "",
+                    "",
                     ""));
+
+
         }
 
         app.contact().removeAllContacts();

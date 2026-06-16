@@ -228,4 +228,62 @@ public class ContactHelper extends HelperBase {
         }
         return result;
     }
+
+    public ContactData getInfo(ContactData contact) {
+        openHome();
+        initContactModification(contact);
+
+        var firstname = manager.driver.findElement(By.name("firstname")).getAttribute("value");
+        var lastname = manager.driver.findElement(By.name("lastname")).getAttribute("value");
+
+        var address = manager.driver.findElement(By.name("address")).getAttribute("value");
+
+        var email = manager.driver.findElement(By.name("email")).getAttribute("value");
+        var email2 = manager.driver.findElement(By.name("email2")).getAttribute("value");
+        var email3 = manager.driver.findElement(By.name("email3")).getAttribute("value");
+
+        return new ContactData()
+                .withId(contact.id())
+                .withFirstName(firstname)
+                .withLastName(lastname)
+                .withAddress(address)
+                .withEmail(email)
+                .withEmail2(email2)
+                .withEmail3(email3);
+    }
+
+    public String getAddress(ContactData contact) {
+
+        var rows = manager.driver.findElements(By.cssSelector("tr"));
+
+
+        for (var row : rows) {
+
+            var inputs = row.findElements(By.cssSelector("input[name='selected[]']"));
+
+            if (!inputs.isEmpty() &&
+                    inputs.get(0).getAttribute("value").equals(contact.id())) {
+
+                var cells = row.findElements(By.tagName("td"));
+                return cells.get(3).getText();
+            }
+        }
+        return "";
+    }
+
+    public String getEmails(ContactData contact) {
+        var rows = manager.driver.findElements(By.name("entry"));
+
+        for (var row : rows) {
+            var id = row.findElement(By.tagName("input"))
+                    .getAttribute("value");
+
+            if (id.equals(contact.id())) {
+                return row.findElements(By.tagName("td"))
+                        .get(4)   // Emails колонка
+                        .getText();
+            }
+        }
+        return "";
+    }
 }
