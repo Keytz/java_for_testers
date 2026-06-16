@@ -20,10 +20,12 @@ public class ContactModificationTests extends TestBase {
                     "first name",
                     "middle_name",
                     "last_name",
-                    "telephone",
                     "e-mail",
-                    randomFile("src/test/resources/images")
-            ));
+                    randomFile("src/test/resources/images"),
+                    "",
+                    "",
+                    "",
+                    ""));
         }
 
         var oldContacts = app.hbm().getContactList();

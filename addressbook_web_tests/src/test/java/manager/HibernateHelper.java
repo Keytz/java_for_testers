@@ -10,6 +10,7 @@ import org.hibernate.cfg.Configuration;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class HibernateHelper extends HelperBase {
     private SessionFactory sessionFactory;
@@ -27,11 +28,7 @@ public class HibernateHelper extends HelperBase {
     }
 
     static List<GroupDate> convertList(List<GroupRecord> records) {
-        List<GroupDate> result = new ArrayList<>();
-        for (var record : records) {
-            result.add(convert(record));
-        }
-        return result;
+        return records.stream().map(HibernateHelper::convert).collect(Collectors.toList());
     }
 
     private static GroupDate convert(GroupRecord record) {
@@ -89,16 +86,13 @@ public class HibernateHelper extends HelperBase {
                 .withId(String.valueOf(record.id))
                 .withFirstName(record.firstname)
                 .withMiddleName(record.middleName)
-                .withLastName(record.lastname);
+                .withLastName(record.lastname)
+        .withHome(record.home)
+                .withMobile(record.mobile)
+                .withWork(record.work);
     }
     private static List<ContactData> convertContactList(List<ContactRecord> records) {
-        List<ContactData> result = new ArrayList<>();
-
-        for (var record : records) {
-            result.add(convert(record));
-        }
-
-        return result;
+        return records.stream().map(HibernateHelper::convert).collect(Collectors.toList());
     }
 
     public List<ContactData> getContactsInGroup(GroupDate group) {

@@ -68,7 +68,7 @@ public class ContactHelper extends HelperBase {
         type(By.name("firstname"), contact.firstname());
         type(By.name("middlename"), contact.middleName());
         type(By.name("lastname"), contact.lastname());
-        type(By.name("home"), contact.telephone());
+        type(By.name("home"), contact.home());
         type(By.name("email"), contact.email());
         if (contact.photo() != null && !contact.photo().isEmpty()) {
             attach(By.name("photo"), contact.photo());
@@ -204,5 +204,13 @@ public class ContactHelper extends HelperBase {
         selectContact(contact);
 
         click(By.name("remove"));
+    }
+
+    public String getPhones(ContactData contact) {
+        return manager.driver.findElement(
+                By.xpath(
+                        String.format("//input[@id='%s']/../../td[6]", contact.id())
+                )
+        ).getText();
     }
 }

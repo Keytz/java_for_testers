@@ -20,6 +20,10 @@ public class ContactRecord {
 
     @Column(name = "lastname")
     public String lastname;
+    public String home;
+    public String mobile;
+    public String work;
+
 
     @ManyToMany(mappedBy = "contacts")
     public List<GroupRecord> groups;

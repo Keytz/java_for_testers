@@ -10,11 +10,12 @@ import common.CommonFunctions;
 import model.ContactData;
 import model.GroupDate;
 
-
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.ArrayList;
+import java.util.function.Supplier;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class Generator {
     @Parameter(names = {"--type", "-t"})
@@ -50,16 +51,15 @@ public class Generator {
             var json = mapper.writeValueAsString(data);
 
             try (var writer = new FileWriter(output)) {
-            writer.write(json);}
-        }else if ("yaml".equals(format)){
+                writer.write(json);
+            }
+        } else if ("yaml".equals(format)) {
             var mapper = new YAMLMapper();
             mapper.writeValue(new File(output), data);
-        }
-        else if ("xml".equals(format)){
+        } else if ("xml".equals(format)) {
             var mapper = new XmlMapper();
             mapper.writeValue(new File(output), data);
-        }
-        else {
+        } else {
             throw new IllegalArgumentException("Неизвестный формат данных " + format);
         }
     }
@@ -74,30 +74,26 @@ public class Generator {
         }
     }
 
+    private Object generateData(Supplier<Object> dataSupplier) {
+        return Stream.generate(dataSupplier).limit(count).collect(Collectors.toList());
+
+    }
+
     private Object generateGroups() {
-        var result = new ArrayList<GroupDate>();
-        for (int i = 0; i < count; i++) {
-            result.add(new GroupDate()
-                    .withName(CommonFunctions.randomString(i * 10))
-                    .withHeader(CommonFunctions.randomString(i * 10))
-                    .withFooter(CommonFunctions.randomString(i * 10)));
-        }
-        return result;
+        return generateData(() -> new GroupDate()
+                .withName(CommonFunctions.randomString(10))
+                .withHeader(CommonFunctions.randomString(10))
+                .withFooter(CommonFunctions.randomString(10)));
     }
 
     private Object generateContacts() {
-        var result = new ArrayList<ContactData>();
-
-        for (int i = 0; i < count; i++) {
-            result.add(new ContactData()
-                    .withFirstName(CommonFunctions.randomString(i * 10))
-                    .withMiddleName(CommonFunctions.randomString(i * 10))
-                    .withLastName(CommonFunctions.randomString(i * 10))
-                    .withTelephone(CommonFunctions.randomString(i * 10))
-                    .withEmail(CommonFunctions.randomString(i * 10))
+        return generateData(() -> new ContactData()
+                    .withFirstName(CommonFunctions.randomString(10))
+                    .withMiddleName(CommonFunctions.randomString(10))
+                    .withLastName(CommonFunctions.randomString(10))
+                    .withTelephone(CommonFunctions.randomString(10))
+                    .withEmail(CommonFunctions.randomString(10))
                     .withPhoto(CommonFunctions.randomFile("src/test/resources/images")));
-        }
 
-        return result;
     }
 }
