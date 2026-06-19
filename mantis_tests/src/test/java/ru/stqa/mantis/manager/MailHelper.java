@@ -55,6 +55,8 @@ public class MailHelper extends HelperBase {
             var session = Session.getInstance(new Properties());
 
             Store store = session.getStore("pop3");
+            System.out.println("USERNAME = [" + username + "]");
+            System.out.println("PASSWORD = [" + password + "]");
 
             store.connect("localhost", 110, username, password);
 
