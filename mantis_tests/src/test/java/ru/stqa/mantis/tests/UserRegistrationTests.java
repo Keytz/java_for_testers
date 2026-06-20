@@ -26,7 +26,7 @@ public class UserRegistrationTests extends TestBase {
         app.mail().drain(email, password);
 
 
-        app.user().createUser(username , email);
+        app.rest().createUser(username, email, password);
 
 
 
