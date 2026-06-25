@@ -1,5 +1,6 @@
 package manager;
 
+import io.qameta.allure.Step;
 import model.GroupDate;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -20,7 +21,7 @@ public class GroupHelper extends HelperBase {
         submitGroupCreation();
         returnToGroupPage();
     }
-
+@Step
     public void removeGroup(GroupDate group) {
         openGroupsPage();
         selectGroup(group);
@@ -28,14 +29,14 @@ public class GroupHelper extends HelperBase {
         returnToGroupPage();
     }
 
-    public void modifyGroup(GroupDate group, GroupDate modifiedGroup) {
-        openGroupsPage();
-        selectGroup(group);
-        initGroupModification();
-        fillGroupForm(modifiedGroup);
-        submitGroupModification();
-        returnToGroupPage();
-    }
+//    public void modifyGroup(GroupDate group, GroupDate modifiedGroup) {
+//        openGroupsPage();
+//        selectGroup(group);
+//        initGroupModification();
+//        fillGroupForm(modifiedGroup);
+//        submitGroupModification();
+//        returnToGroupPage();
+//    }
 
     public void openGroupsPage() {
         if (!manager.isElementPresent(By.name("new"))) {
@@ -78,7 +79,7 @@ public class GroupHelper extends HelperBase {
     }
 
     private void selectGroup(GroupDate group) {
-
+        System.out.println("Group id = " + group.id());
         click(By.cssSelector(String.format("input[value='%s']", group.id())));
     }
 
@@ -111,5 +112,24 @@ public class GroupHelper extends HelperBase {
                     return new GroupDate().withId(id).withName(name);
                 })
                 .collect(Collectors.toList());
+    }
+    public void modifyGroup(GroupDate group, GroupDate modifiedGroup) {
+        System.out.println("Selected group id = " + group.id());
+
+        openGroupsPage();
+
+        System.out.println("After openGroupsPage");
+
+        selectGroup(group);
+
+        System.out.println("After selectGroup");
+
+        initGroupModification();
+
+        System.out.println("After initGroupModification");
+
+        fillGroupForm(modifiedGroup);
+        submitGroupModification();
+        returnToGroupPage();
     }
 }

@@ -18,6 +18,7 @@ import java.util.Map;
 public class ContactHelper extends HelperBase {
 
 
+    private ContactData contact;
 
     public ContactHelper(ApplicationManager manager) {
         super(manager);
@@ -272,6 +273,7 @@ public class ContactHelper extends HelperBase {
     }
 
     public String getEmails(ContactData contact) {
+        this.contact = contact;
         var rows = manager.driver.findElements(By.name("entry"));
 
         for (var row : rows) {
