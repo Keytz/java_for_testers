@@ -1,0 +1,3 @@
+rootProject.name = 'java_for_testers'
+include ':sandbox'
+include ':addressbook_web_tests'
